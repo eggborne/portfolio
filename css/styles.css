@@ -29,6 +29,10 @@ body {
 li {
   padding:5px;
 }
-.horiz-list {
-  float:left
+.tech-bullet {
+  font-size:1.2em;
+}
+.collapsed {
+  height:0px;
+  overflow: hidden;
 }
