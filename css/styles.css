@@ -1,0 +1,16 @@
+#portrait {
+  height:50%;
+  float:right;
+  /* display:inline-block; */
+}
+.post {
+  width:100%;
+
+  /* height:400px; */
+}
+.screenshot {
+  background:green;
+  width: 100%;
+  height:300px;
+  margin-bottom:20px;
+}
