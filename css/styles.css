@@ -1,39 +1,61 @@
 body {
   background: #eff9ed;
   transition: height 400ms ease;
+  font-size:16px;
+
+}
+a {
+  transition: all 300ms ease;
 }
 li {
   padding:5px;
 }
 button {
+  position:relative;
   width:140px;
   border-radius: 10px;
   font-size:1.2em;
-  color:white;
-  background:#afa;
   padding:10px 20px 10px 20px;
-  box-shadow: 0px 0px 4px black;
-  text-shadow: 0px 0px 1px black;
-  border:none;
   outline:none;
+  transition: all 300ms ease;
 }
 #portrait {
   height:50%;
   float:right;
 }
+#button-bar {
+  width:100%;
+  height:100%;
+  margin-bottom:40px;
+  /* bottom:0px; */
+  /* position:relative; */
+}
+/* #about-button:hover {
+  background:lightgreen;
+} */
+.bar-button {
+  width:calc(100% / 3);
+  height:90px;
+  font-size:2em;
+}
+.bar-button:hover {
+  background:#afa;
+}
 .post {
   width:100%;
   margin-bottom:40px;
-
+  box-shadow: 0px 0px 16px black;
+  transition: all 300ms ease;
 }
 .screenshot {
-  background:green;
   width:100%;
   margin-bottom:20px;
+  transition: opacity 300ms ease;
 }
-.panel {
+.screenshot:hover {
+  opacity:0.7;
+}
 
-}
 .panel > .panel-heading {
   color:white;
 }
@@ -52,4 +74,11 @@ button {
 .collapsed {
   height:0px;
   overflow: hidden;
+}
+.selected {
+  background:lightgreen;
+}
+.jumbotron {
+  margin-top:20px;
+  box-shadow: 0px 0px 16px grey;
 }

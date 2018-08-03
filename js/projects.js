@@ -95,7 +95,7 @@ var projectData =
       displayName:'Donald Trumps\'s Punch-Out!',
       descriptionBullets:[
         'Mike Tyson\'s Punch-Out except you beat up Trump',
-        'Only makes you feel better temporarily'
+        'Makes you feel better temporarily'
       ],
       techBullets:[
           'HTML5',
