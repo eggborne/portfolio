@@ -16,7 +16,7 @@ button {
   border-radius: 10px;
   font-size:1.2em;
   padding:10px 20px 10px 20px;
-  outline:none;
+  outline:none !important; 
   transition: all 300ms ease;
 }
 #portrait {
@@ -27,12 +27,11 @@ button {
   width:100%;
   height:100%;
   margin-bottom:40px;
-  /* bottom:0px; */
-  /* position:relative; */
 }
-/* #about-button:hover {
-  background:lightgreen;
-} */
+.contact-grid {
+  border: 3px solid grey;
+  height:400px;
+}
 .bar-button {
   width:calc(100% / 3);
   height:90px;
