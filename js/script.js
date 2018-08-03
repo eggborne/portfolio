@@ -11,7 +11,7 @@ function fillProjectCards() {
     var repoURL = "https://github.com/eggborne/"+currentProjectData.repo
     console.log("putting in column " + targetColumnID + " with ID " + projectID)
     var targetDiv = document.getElementById(targetColumnID)
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="post panel panel-success"><div class="panel-heading" style="background:'+currentProjectData.bgColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body"><img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button onclick="expandOnClick(`desc`,'+p+')" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button onclick="expandOnClick(`tech`,'+p+')" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><span"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></span></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="post panel panel-success"><div class="panel-heading" style="background:'+currentProjectData.bgColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body"><img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><span"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></span></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
     // fill descriptions
     var descriptionList = document.getElementById("project-description-"+p)
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
@@ -29,13 +29,13 @@ function fillProjectCards() {
     }
     // define actions for expand buttons
     var descButton = document.getElementById("desc-button-"+p)
-    descButton.style.background = "#afa"
+    descButton.style.background = "#5a5"
     descButton.click = function() {
 
     }
     var techButton = document.getElementById("tech-button-"+p)
-    descButton.style.background = "#aaf"
-    descButton.click = function() {
+    techButton.style.background = "#558"
+    techButton.click = function() {
       console.log("clicked tech expand")
     }
 
@@ -44,6 +44,21 @@ function fillProjectCards() {
 
   }
 }
-function expandOnClick(list,listIndex) {
-  console.log("clicked " + list + " expand, index " + listIndex)
+function expandOnClick(sectionID,index) {
+  var section = document.getElementById(sectionID+index)
+  if (sectionID[0]==="p") {
+    var button = document.getElementById("desc-button-"+index)
+  } else {
+    var button = document.getElementById("tech-button-"+index)
+  }
+  console.log("clicked " + sectionID + " expand")
+  console.log(section.classList)
+  if (section.classList.contains("collapsed")) {
+    section.classList.remove("collapsed")
+    button.innerHTML = "Collapse"
+  } else {
+    section.classList.add("collapsed")
+    button.innerHTML = "Expand"
+  }
+
 }
