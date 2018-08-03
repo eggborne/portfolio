@@ -8,27 +8,22 @@ function fillProjectCards() {
     console.log("current project is " + currentProjectData.shortName)
     var targetColumnID = (p%2===0) ? "column1" : "column2"
     var projectID = "project"+p
+    var repoURL = "https://github.com/eggborne/"+currentProjectData.repo
     console.log("putting in column " + targetColumnID + " with ID " + projectID)
     var targetDiv = document.getElementById(targetColumnID)
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="post panel panel-success"><div class="panel-heading" style="background:'+currentProjectData.bgColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body"><img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4></div><p class="project-description"><ul class="description-bullets"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4></div><ul id="tech-list-'+p+'" class="tech-bullets"></ul></div><div class="panel-footer"><div class="row"><div class="col-md-4"><span style="float:left"><a href="#">Website link</a></span></div><div class="col-md-5"></div><div class="col-md-3"><span style="float:right"><a href="#">Github link</a></span></div></div></div></div>'
-    console.log(targetDiv)
-    var descriptionList = document.getElementsByClassName("description-bullets")[document.getElementsByClassName("description-bullets").length-1]
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="post panel panel-success"><div class="panel-heading" style="background:'+currentProjectData.bgColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body"><img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4></div><p id="project-description-'+p+'"><ul class="description-bullet"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4></div><ul class="horiz-list" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><span"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></span></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    var descriptionList = document.getElementById("project-description-"+p)
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
       var currentBullet = currentProjectData.descriptionBullets[d]
+      console.log("adding bullet " + currentBullet)
       if (currentBullet.length) {
         descriptionList.innerHTML += '<li>'+currentBullet+'</li>'
       }
     }
     var techList = document.getElementById("tech-list-"+p)
-    console.log("found " + document.getElementsByClassName("tech-bullets").length + " tech lists")
-    console.log(currentProjectData.techBullets.length + " bullets for " + displayName)
-    console.log("adding to")
-    console.log(techList)
     for (var t=0;t<currentProjectData.techBullets.length;t++) {
       var currentTechBullet = currentProjectData.techBullets[t]
-      console.log("about to add "+currentTechBullet+" to tech list for " + displayName)
-      // doesn't add them correctly!!
-      techList.innerHTML += '<li>'+currentTechBullet+'</li>'
+      techList.innerHTML += '<li class="tech-bullet">'+currentTechBullet+'</li>'
     }
   }
   for (var p=0;p<projectList.length;p++) {

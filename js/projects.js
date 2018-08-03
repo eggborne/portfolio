@@ -3,6 +3,7 @@ var projectData =
   'frogracer':{
         bgColor:'#002508',
         url:'http://www.eggborne.com/frog-racer',
+        repo:'frog-racer',
         iconUrl:'/icons/frogracericon.png',
         shortName:'frogracer',
         displayName:'Frog Racer 2018',
@@ -24,7 +25,8 @@ var projectData =
     },
     'tetro':{
         bgColor:'#150018',
-        url:'https://eggborne,github.io/tetro/',
+        url:'https://eggborne.github.io/tetro/',
+        repo:'tetro',
         iconUrl:'/icons/tetrisicon.bmp',
         shortName:'tetro',
         displayName:'Tetro',
@@ -46,6 +48,7 @@ var projectData =
     'metroid':{
         bgColor:'#00004d',
         url:'http://www.eggborne.com/metroid/',
+        repo:'random-metroid',
         shortName:'metroid',
         iconUrl:'/icons/metroidicon.png',
         displayName:'Random Metroid',
@@ -63,7 +66,8 @@ var projectData =
     },
     'kungfu':{
       bgColor:'#00004d',
-      url:'http://www.eggborne.com/kungfu/',
+      url:'https://eggborne.github.io/kungfu/',
+      repo:'kung-fu',
       shortName:'kungfu',
       iconUrl:'/icons/kficon.png',
       displayName:'NES Kung Fu',
@@ -85,6 +89,7 @@ var projectData =
     'punchout':{
       bgColor:'#804000',
       url:'http://www.eggborne.com/mtpo/',
+      repo:'donald-trumps-punch-out',
       shortName:'punchout',
       iconUrl:'/icons/boxinggloveicon.png',
       displayName:'Donald Trumps\'s Punch-Out!',
@@ -104,6 +109,7 @@ var projectData =
     'toad':{
       bgColor:'#002508',
       url:'http://www.eggborne.com/toad/',
+      repo:'toads-Odyssey',
       iconUrl:'/icons/toadicon.png',
       shortName:'toad',
       displayName:'Toad\'s Odyssey',
@@ -122,6 +128,7 @@ var projectData =
     'cas':{
       bgColor:'#222211',
       url:'https://eggborne.github.io/cellular-automata-sandbox/',
+      repo:'cellular-automata-sandbox',
       iconUrl:'/icons/casicon.png',
       shortName:'cas',
       displayName:'Cellular Automata Sandbox',
@@ -140,6 +147,7 @@ var projectData =
     'eggprotector':{
       bgColor:'#1a0000',
       url:'http://www.eggborne.com/eggprotector/',
+      repo:'egg-protector',
       iconUrl:'/icons/fetusicon.png',
       shortName:'eggprotector',
       displayName:'Egg Protector',
@@ -159,6 +167,7 @@ var projectData =
       bgColor:'#002b2b',
       iconUrl:'/icons/spermtypericon.png',
       url:'http://www.eggborne.com/spermtyper/',
+      repo:'sperm-typer',
       shortName:'spermtyper',
       displayName:'Sperm Typer',
       descriptionBullets:[
@@ -179,6 +188,7 @@ var projectData =
     'yarsrevenge':{
       bgColor:'#252525',
       url:'http://www.eggborne.com/yars/',
+      repo:'yars-revenge',
       iconUrl:'/icons/yarsicon.png',
       shortName:'yarsrevenge',
       displayName:'Yars\' Revenge',
@@ -197,6 +207,7 @@ var projectData =
     'clues':{
       bgColor:'#252525',
       url:'http://www.eggborne.com/clues/',
+      repo:'crossword-clue-creator',
       iconUrl:'/icons/crosswordicon.png',
       shortName:'clues',
       displayName:'Crossword Clue Creator',
@@ -219,6 +230,7 @@ var projectData =
     'pong':{
       bgColor:'#252525',
       url:'http://www.eggborne.com/pong/',
+      repo:'sql-pong',
       iconUrl:'/icons/pongicon.png',
       shortName:'pong',
       displayName:'SQL Pong',
