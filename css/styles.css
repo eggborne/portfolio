@@ -1,5 +1,5 @@
 body {
-  background: #eff9ed;
+  background: #eff9fd;
   transition: height 400ms ease;
   font-size:16px;
 
@@ -16,11 +16,10 @@ button {
   border-radius: 10px;
   font-size:1.2em;
   padding:10px 20px 10px 20px;
-  outline:none !important; 
+  outline:none !important;
   transition: all 300ms ease;
 }
 #portrait {
-  height:50%;
   float:right;
 }
 #button-bar {
@@ -30,7 +29,7 @@ button {
 }
 .contact-grid {
   border: 3px solid grey;
-  height:400px;
+  height:160px;
 }
 .bar-button {
   width:calc(100% / 3);
