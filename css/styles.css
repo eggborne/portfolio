@@ -1,7 +1,8 @@
 body {
-  background: #eff9fd;
+  background: #c2ffd4;
   transition: height 400ms ease;
   font-size:16px;
+  overflow-y:scroll;
 
 }
 a {
@@ -38,7 +39,7 @@ button {
   font-weight:bold;
   width:calc(100% / 3);
   height:90px;
-  font-size:40px;
+  font-size:30px;
 }
 .bar-button:hover {
   background:#afa;
@@ -87,13 +88,13 @@ button {
 
 @media (max-width:620px) {
   .bar-button {
-    font-size:30px;
+    font-size:26px;
     height:70px;
   }
 }
 @media (max-width:500px) {
   .bar-button {
-    font-size:24px;
+    font-size:22px;
     height:50px;
   }
 }
