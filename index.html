@@ -9,7 +9,7 @@
     <script src="js/script.js"></script>
     <title>Michael Donovan's portfolio</title>
   </head>
-  <body onload="fillProjectCards()">
+  <body onload="loadSection('projects');fillProjectCards();">
     <div class="container">
       <div id="header" class="jumbotron">
         <div class="row">
@@ -23,15 +23,15 @@
         </div>
       </div>
       <div id="button-bar" class="btn-group" role="group" aria-label="...">
-        <button onclick="toggleBarButton(this)" id="projects-button" type="button" class="bar-button btn btn-success">Projects</button>
-        <button onclick="toggleBarButton(this)" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
-        <button onclick="toggleBarButton(this)" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
+        <button onclick="toggleBarButton(this);toggleGallery('on')" id="projects-button" type="button" class="bar-button btn btn-success">Projects</button>
+        <button onclick="toggleBarButton(this);loadSection('about');toggleGallery('check')" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
+        <button onclick="toggleBarButton(this);loadSection('contact');toggleGallery('check')" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
+      </div>
+      <div id="gallery">
+        <!-- gallery goes here on load -->
       </div>
       <div id="page-body">
-        <div class="row">
-          <div id="column1" class="col-sm-6"></div>
-          <div id="column2" class="col-sm-6"></div>
-        </div>
+        <!-- section bodies load and unload here -->
       </div>
     </div>
   </body>
