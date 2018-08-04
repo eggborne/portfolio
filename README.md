@@ -20,6 +20,6 @@ Open a terminal and clone this repository by typing:
 
 Navigate to the cloned directory and open index.html in your favorite web browser.
 
-#Legal
+## Legal
 
 This software has no license.
