@@ -23,6 +23,7 @@ button {
   float:right;
   margin-top:18px;;
   height:160px;
+  transform: sc
 }
 #button-bar {
   width:100%;
@@ -31,12 +32,10 @@ button {
 .section {
   margin-top:30px;
   opacity:0;
-  transform:translateY(100vh);
   transition: transform 400ms ease, opacity 200ms linear;
+  display:none;
 }
-#page-body {
-  margin-top:30px;
-}
+
 .contact-grid {
   border: 3px solid grey;
   height:160px;

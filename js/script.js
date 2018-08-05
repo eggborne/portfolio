@@ -78,24 +78,28 @@ function fillSections() { // only called ONCE on body.onload
   document.getElementById("projects").innerHTML = sectionBodies["projects"]
   document.getElementById("about").innerHTML = sectionBodies["about"]
   document.getElementById("contact").innerHTML = sectionBodies["contact"]
-
-  // these need to be position:fixed or something
-
+  
   // projects section is toggled visible in body.onload after cards are filled
 }
 function toggleSectionVisible(newSection) {
   // newSection now is an ID but will be an object in future (i.e. newSection.id)
   var oldSectionDiv = document.getElementById(currentSection)
   var newSectionDiv = document.getElementById(newSection)
+
   // obscure the currently visible section
-  console.log("toggling " + currentSection + " invisible")
-  newSectionDiv.style.opacity = 0
-  newSectionDiv.style.transform = "translateY(100vh)" // maybe set different "hide/show" animations for each section?
+  if (newSection!==currentSection) {
+    console.log("toggling " + currentSection + " invisible")
+    oldSectionDiv.style.opacity = 0
+
+    // must display:none so that it stops taking up space
+    setTimeout(function(){ // delayed in order to show transition
+      oldSectionDiv.style.display = "none"
+    },200)
+  }
   // show the new selected section
   console.log("toggling " + newSection + " visible")
+  newSectionDiv.style.display = "block"
   newSectionDiv.style.opacity = 1
-  newSectionDiv.style.transform = "translateX(0)"
-  // these are returning to their origin spot way down the page
-
+  
   currentSection = newSection // very important
 }
