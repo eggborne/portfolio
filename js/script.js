@@ -34,11 +34,6 @@ function determineColumnAmount() {
   }
   sectionBodies.projects += '</div>'
 }
-function setButtonBarMode() {
-  if (window.innerWidth <= 400) {
-    document.getElementById("button-bar").className = "btn-group-vertical"
-  }
-}
 function fillSections() { // only called ONCE on body.onload
   document.getElementById("projects").innerHTML = sectionBodies["projects"]
   document.getElementById("about").innerHTML = sectionBodies["about"]
@@ -86,14 +81,12 @@ function fillProjectCards() {
   log("added " + projectList.length + " projects")
 }
 function toggleBarButton(button) {
-  button.classList.remove('btn-default')
-  button.classList.add('btn-success')
+  button.classList.add('selected')
   var barButtonArray = document.getElementsByClassName("bar-button")
   for (var b=0;b<barButtonArray.length;b++) {
     var currentButton = barButtonArray[b]
     if (currentButton !== button) {
-      currentButton.classList.remove('btn-success')
-      currentButton.classList.add('btn-default')
+      currentButton.classList.remove('selected')
     }
   }
 }

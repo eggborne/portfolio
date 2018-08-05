@@ -9,7 +9,7 @@
     <script src="js/script.js"></script>
     <title>Michael Donovan's portfolio</title>
   </head>
-  <body onload="setButtonBarMode();determineColumnAmount();fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
+  <body onload="determineColumnAmount();fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
     <div id="stage" class="container">
       <div id="header" class="jumbotron" style="width:95%;margin-left:2.5%">
         <div class="row">
@@ -22,10 +22,10 @@
           </div>
         </div>
       </div>
-      <div id="button-bar" class="btn-group" role="group" aria-label="...">
-        <button onclick="toggleBarButton(this);toggleSectionVisible('projects')" id="projects-button" type="button" class="bar-button btn btn-success">Projects</button>
-        <button onclick="toggleBarButton(this);toggleSectionVisible('about')" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
-        <button onclick="toggleBarButton(this);toggleSectionVisible('contact')" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
+      <div id="button-bar" class="row">
+        <div onclick="toggleBarButton(this);toggleSectionVisible('projects')" id="projects-button" class="bar-button col-sm-4">Projects</div>
+        <div onclick="toggleBarButton(this);toggleSectionVisible('about')" id="about-button" class="bar-button col-sm-4">About Me</div>
+        <div onclick="toggleBarButton(this);toggleSectionVisible('contact')" id="contact-button" class="bar-button col-sm-4">Contact</div>
       </div>
       <div id="projects" class="section">
         <!-- html goes here on load -->
