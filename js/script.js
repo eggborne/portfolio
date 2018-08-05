@@ -1,5 +1,6 @@
 var currentSection = "projects" // must change to sections.projects once sections obj is made
 var minimumColumnWidth = 350
+var minimumMargin = 0.03 // how small the margin will go in case of narrow screen
 var maxColumns = 5
 var stageWidth = Math.floor(window.innerWidth*0.8) // 0.8 is from .container's 80% width
 var sectionBodies = { // include this in sections obj as sections.html
@@ -12,12 +13,17 @@ function determineColumnAmount() {
   log("minimumColumnWidth: " + minimumColumnWidth)
   log("maxColumns: " + maxColumns,true)
   if ((window.innerWidth*0.8) < minimumColumnWidth) {
-    log("width is " + stageWidth)
-    minimumColumnWidth = stageWidth
+    log("width is " + stageWidth + ", smaller than min col width!")
+    if ((window.innerWidth*minimumMargin)-stageWidth >= minimumColumnWidth) {
+      stageWidth = Math.floor(window.innerWidth*newMargin)
+    } else {
+      log("changing col width to " + stageWidth)
+      minimumColumnWidth = stageWidth
+    }
   } else {
     log("stage width is " + stageWidth + ", full " + window.innerWidth)
   }
-  maxColumns = Math.ceil(stageWidth/minimumColumnWidth)
+  maxColumns = Math.floor(stageWidth/minimumColumnWidth)
   // make sure it's divisible by 12
   maxColumns -= (12 % maxColumns)
   log("room for " + maxColumns + " columns")

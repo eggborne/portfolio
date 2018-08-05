@@ -30,7 +30,7 @@ button {
   height:100%;
 }
 #debug {
-  position: absolute;
+  position: fixed;
   background:rgb(0,0,0,0.8);
   width:50%;
   min-height:100%;
@@ -39,6 +39,7 @@ button {
   padding:1% 2%;
   color:white;
   pointer-events: none;
+  font-size:10px;
   /* display:none; */
 }
 .section {
