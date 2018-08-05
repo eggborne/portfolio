@@ -23,11 +23,11 @@
         </div>
       </div>
       <div id="button-bar" class="btn-group" role="group" aria-label="...">
-        <button onclick="toggleBarButton(this);toggleGallery('on')" id="projects-button" type="button" class="bar-button btn btn-success">Projects</button>
-        <button onclick="toggleBarButton(this);loadSection('about');toggleGallery('check')" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
-        <button onclick="toggleBarButton(this);loadSection('contact');toggleGallery('check')" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
+        <button onclick="toggleBarButton(this);toggleSectionVisible('projects')" id="projects-button" type="button" class="bar-button btn btn-success">Projects</button>
+        <button onclick="toggleBarButton(this);toggleSectionVisible('about')" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
+        <button onclick="toggleBarButton(this);toggleSectionVisible('contact')" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
       </div>
-      <div id="gallery">
+      <div id="projects">
         <!-- gallery goes here on load -->
       </div>
       <div id="page-body">

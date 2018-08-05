@@ -1,6 +1,7 @@
-var minimumColumnWidth = 480
+var currentSection = "projects" // must change to sections.projects once sections obj is made
+var minimumColumnWidth = 400
 var maxColumns = Math.floor(window.innerWidth/minimumColumnWidth)
-var sectionBodies = {
+var sectionBodies = { // include this in sections obj as sections.html?
   projects : '<div class="row">',
   about : '<div class="page-header"><h1>About Mike</h1></div> <p> <div class="page-header"><h1>Education</h1></div> Nullam bibendum mi dapibus, pretium mauris non, porttitor nisl. Quisque mollis tempus semper. Etiam convallis vehicula neque, sit amet mollis nibh posuere vel. Aenean viverra arcu id congue dignissim. Mauris diam lorem, condimentum vel diam quis, dapibus sollicitudin ligula. Fusce sed luctus ante. Sed sit amet eros tempor, sollicitudin erat id, luctus leo. Curabitur eget aliquet dui, et sollicitudin turpis. Aenean eget molestie risus, eu pulvinar lorem. Aliquam sed velit dolor. Curabitur vel elit felis. Nam viverra dui nisi, quis dictum massa euismod ac. Proin sit amet tempus elit. Donec sit amet arcu ornare, vehicula quam id, condimentum nisi. Donec fringilla quis lorem in condimentum. </p> <p> <div class="page-header"><h1>Skills</h1></div> In vulputate pretium risus, in pharetra libero tempor et. Fusce posuere orci quis dolor sodales interdum. Sed ultricies sodales purus, at consequat tellus tristique non. Integer id arcu ut nisi egestas interdum a sed neque. Nam ut leo ut odio porta finibus id nec dui. Suspendisse potenti. Mauris eros urna, ullamcorper a luctus interdum, varius quis tortor. Praesent imperdiet, enim at egestas vulputate, lectus sem varius quam, vitae dapibus mauris leo non lacus. </p> <p> <div class="page-header"><h1>Hobbies</h1></div> Morbi at commodo risus. Quisque ornare vel velit sed euismod. Fusce pharetra commodo urna, tincidunt mattis odio elementum vel. Proin eget facilisis magna. Vestibulum et dui quis sem auctor malesuada. Sed nec est viverra, placerat arcu et, lobortis lectus. Quisque ac metus semper, dapibus lorem nec, fermentum augue. Nullam fringilla pellentesque lacus in tempor. Suspendisse gravida fringilla nulla ac venenatis. Nulla elementum feugiat sollicitudin. </p>',
   contact : '<div class="page-header"><h1>Contact Mike</h1></div> <div class="row"> <div class="col-lg-4 contact-grid"> <h2>Phone:</h2> <h3><strong>360-936-8442</strong></h3> </div> <div class="col-lg-4 contact-grid"> <h2>Email:</h2> <h3><a href="mailto:mike@eggborne.com"><strong>mike@eggborne.com</strong></a></h3> </div> <div class="col-lg-4 contact-grid"> <h2>GitHub:</h2> <h3><a href="https://www.github.com/eggborne"><strong>github.com/eggborne</strong></a></h3> </div> </div>'
@@ -72,32 +73,32 @@ function expandOnClick(sectionID,index) {
     button.innerHTML = "Expand"
   }
 }
-function loadSection(section) {
+function loadSection(section) { // must get rid of this, or make it load all three sections
   if (section==="projects") {
     // this only occurs on initial page load
-    document.getElementById("gallery").innerHTML = sectionBodies[section]
-    document.getElementById("gallery").style.transform = "translateX(0)"
-    toggleGallery("on")
+    document.getElementById("projects").innerHTML = sectionBodies[section]
+    document.getElementById("projects").style.transform = "translateX(0)"
+    document.getElementById("projects").style.opacity = 1
   } else {
     document.getElementById("page-body").innerHTML = sectionBodies[section]
   }
   currentPage = Object.keys(sectionBodies).indexOf(section)
 }
-function toggleGallery(setting) {
-  var galleryDiv = document.getElementById("gallery")
-  console.log("toggling " + setting)
-  if (setting==="on" || galleryDiv.style.opacity===0) {
-    console.log("showing gallery")
-    galleryDiv.style.position = "initial"
-    galleryDiv.style.opacity = 1
-    galleryDiv.style.transform = "translateX(0)"
-  } else {
-    galleryDiv.style.opacity = 0
-    galleryDiv.style.transform = "translateY(100vh)"
-    setTimeout(function(){
-      galleryDiv.style.position = "fixed"
-    },200)
-    
-  }
-  console.log(galleryDiv)
+function toggleSectionVisible(newSection) {
+  // newSection now is an ID but will be an object in future (i.e. newSection.id)
+  var oldSectionDiv = document.getElementById(currentSection)
+  var newSectionDiv = document.getElementById(newSection)
+
+  // obscure the currently visible section
+  console.log("toggling " + currentSection + " invisible")
+  newSectionDiv.style.opacity = 0
+  newSectionDiv.style.transform = "translateY(100vh)" // maybe set different "hide/show" animations for each section?
+
+  // show the new selected section
+  console.log("toggling " + newSection + " visible")
+  newSectionDiv.style.opacity = 1
+  newSectionDiv.style.transform = "translateX(0)"
+
+  // to use this function, must change about and contact sections to be their own swappable div like #gallery is now
+  
 }
