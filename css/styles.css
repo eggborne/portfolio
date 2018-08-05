@@ -29,13 +29,24 @@ button {
   width:100%;
   height:100%;
 }
+#debug {
+  position: absolute;
+  background:rgb(0,0,0,0.8);
+  width:50%;
+  min-height:100%;
+  top:0;
+  left:0;
+  padding:1% 2%;
+  color:white;
+  pointer-events: none;
+  /* display:none; */
+}
 .section {
   margin-top:30px;
   opacity:0;
   transition: transform 400ms ease, opacity 200ms linear;
   display:none;
 }
-
 .contact-grid {
   border: 3px solid grey;
   height:160px;
@@ -49,7 +60,7 @@ button {
 .bar-button:hover {
   background:#afa;
 }
-.post {
+.project-card {
   width:100%;
   margin-bottom:40px;
   box-shadow: 0px 0px 16px black;

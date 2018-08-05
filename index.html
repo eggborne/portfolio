@@ -9,7 +9,7 @@
     <script src="js/script.js"></script>
     <title>Michael Donovan's portfolio</title>
   </head>
-  <body onload="fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
+  <body onload="determineColumnAmount();fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
     <div class="container" style="width:80%">
       <div id="header" class="jumbotron" style="width:95%;margin-left:2.5%">
         <div class="row">
@@ -36,6 +36,7 @@
       <div id="contact" class="section">
         <!-- html goes here on load -->
       </div>
+      <div id="debug"></div>
     </div>
   </body>
 </html>
