@@ -9,8 +9,8 @@
     <script src="js/script.js"></script>
     <title>Michael Donovan's portfolio</title>
   </head>
-  <body onload="determineColumnAmount();fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
-    <div id="stage" class="container" style="width:90%">
+  <body onload="setButtonBarMode();determineColumnAmount();fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
+    <div id="stage" class="container">
       <div id="header" class="jumbotron" style="width:95%;margin-left:2.5%">
         <div class="row">
           <div class="col-xs-7">
@@ -37,6 +37,9 @@
         <!-- html goes here on load -->
       </div>
       <div id="debug"></div>
+    </div>
+    <div id="footer" class="container">
+      Footer text
     </div>
   </body>
 </html>

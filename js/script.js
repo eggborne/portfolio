@@ -8,6 +8,7 @@ var sectionBodies = { // include this in sections obj as sections.html
   contact : '<div class="container contact"><div class="page-header"><h1>Contact Mike</h1></div> <div class="row"> <div class="col-lg-4 contact-grid"> <h2>Phone:</h2> <h3><strong>360-936-8442</strong></h3> </div> <div class="col-lg-4 contact-grid"> <h2>Email:</h2> <h3><a href="mailto:mike@eggborne.com"><strong>mike@eggborne.com</strong></a></h3> </div> <div class="col-lg-4 contact-grid"> <h2>GitHub:</h2> <h3><a href="https://www.github.com/eggborne"><strong>github.com/eggborne</strong></a></h3> </div> </div>'
 }
 
+
 function determineColumnAmount() {
   var stageWidth = document.getElementById("stage").getBoundingClientRect().width
   log("minimumColumnWidth: " + minimumColumnWidth)
@@ -33,6 +34,11 @@ function determineColumnAmount() {
   }
   sectionBodies.projects += '</div>'
 }
+function setButtonBarMode() {
+  if (window.innerWidth <= 400) {
+    document.getElementById("button-bar").className = "btn-group-vertical"
+  }
+}
 function fillSections() { // only called ONCE on body.onload
   document.getElementById("projects").innerHTML = sectionBodies["projects"]
   document.getElementById("about").innerHTML = sectionBodies["about"]
@@ -54,7 +60,10 @@ function fillProjectCards() {
     var targetDiv = document.getElementById(targetColumnID)
     // lighten themeColor for panel body
     var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.4)")
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    // reduce title font size if too long
+
     // fill descriptions
     var descriptionList = document.getElementById("project-description-"+p)
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
