@@ -1,7 +1,7 @@
 var projectData =
 {
   'frogracer':{
-      bgColor:'#002508',
+      themeColor:'#002508',
       url:'http://www.eggborne.com/frogracer/',
       repo:'frog-racer',
       iconUrl:'/icons/frogracericon.png',
@@ -24,7 +24,7 @@ var projectData =
       screenshots:['img/frtitle.png']
     },
     'tetro':{
-      bgColor:'#150018',
+      themeColor:'#150018',
       url:'http://www.eggborne.com/tetro/',
       repo:'tetro',
       iconUrl:'/icons/tetrisicon.bmp',
@@ -46,7 +46,7 @@ var projectData =
       screenshots:['img/tetrotitle.png']
     },
     'metroid':{
-      bgColor:'#00004d',
+      themeColor:'#00004d',
       url:'http://www.eggborne.com/metroid/',
       repo:'random-metroid',
       shortName:'metroid',
@@ -65,7 +65,7 @@ var projectData =
       screenshots:['img/metroidtitle.png']
     },
     'kungfu':{
-      bgColor:'#00004d',
+      themeColor:'#00004d',
       url:'http://www.eggborne.com/kungfu/',
       repo:'kung-fu',
       shortName:'kungfu',
@@ -87,7 +87,7 @@ var projectData =
       screenshots:['']
     },
     'punchout':{
-      bgColor:'#804000',
+      themeColor:'#804000',
       url:'http://www.eggborne.com/mtpo/',
       repo:'donald-trumps-punch-out',
       shortName:'punchout',
@@ -107,7 +107,7 @@ var projectData =
       screenshots:['img/punchouttitle.png']
     },
     'toad':{
-      bgColor:'#002508',
+      themeColor:'#002508',
       url:'http://www.eggborne.com/toad/',
       repo:'toads-Odyssey',
       iconUrl:'/icons/toadicon.png',
@@ -126,7 +126,7 @@ var projectData =
       screenshots:['']
     },
     'cas':{
-      bgColor:'#222211',
+      themeColor:'#222211',
       url:'https://eggborne.github.io/cellular-automata-sandbox/',
       repo:'cellular-automata-sandbox',
       iconUrl:'/icons/casicon.png',
@@ -145,7 +145,7 @@ var projectData =
       screenshots:['img/castitle.png']
     },
     'eggprotector':{
-      bgColor:'#1a0000',
+      themeColor:'#1a0000',
       url:'http://www.eggborne.com/eggprotector/',
       repo:'egg-protector',
       iconUrl:'/icons/fetusicon.png',
@@ -164,7 +164,7 @@ var projectData =
       screenshots:['']
     },
     'spermtyper':{
-      bgColor:'#002b2b',
+      themeColor:'#002b2b',
       iconUrl:'/icons/spermtypericon.png',
       url:'http://www.eggborne.com/spermtyper/',
       repo:'sperm-typer',
@@ -186,7 +186,7 @@ var projectData =
       screenshots:['']
     },
     'yarsrevenge':{
-      bgColor:'#252525',
+      themeColor:'#252525',
       url:'http://www.eggborne.com/yars/',
       repo:'yars-revenge',
       iconUrl:'/icons/yarsicon.png',
@@ -205,7 +205,7 @@ var projectData =
       screenshots:['']
     },
     'clues':{
-      bgColor:'#252525',
+      themeColor:'#252525',
       url:'http://www.eggborne.com/clues/',
       repo:'crossword-clue-creator',
       iconUrl:'/icons/crosswordicon.png',
@@ -228,7 +228,7 @@ var projectData =
     }
     ,
     'pong':{
-      bgColor:'#252525',
+      themeColor:'#252525',
       url:'http://www.eggborne.com/pong/',
       repo:'sql-pong',
       iconUrl:'/icons/pongicon.png',
