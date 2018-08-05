@@ -1,6 +1,7 @@
 var currentSection = "projects" // must change to sections.projects once sections obj is made
 var minimumColumnWidth = 350
-var maxColumns = 5
+var maxColumns = 6
+var columnAmount
 var sectionBodies = { // include this in sections obj as sections.html
   projects : '<div class="row">', // the rest is filled with determineColumnAmout()
   about : '<div class="container about"><p> <div class="page-header"><h1>Education</h1></div> Nullam bibendum mi dapibus, pretium mauris non, porttitor nisl. Quisque mollis tempus semper. Etiam convallis vehicula neque, sit amet mollis nibh posuere vel. Aenean viverra arcu id congue dignissim. Mauris diam lorem, condimentum vel diam quis, dapibus sollicitudin ligula. Fusce sed luctus ante. Sed sit amet eros tempor, sollicitudin erat id, luctus leo. Curabitur eget aliquet dui, et sollicitudin turpis. Aenean eget molestie risus, eu pulvinar lorem. Aliquam sed velit dolor. Curabitur vel elit felis. Nam viverra dui nisi, quis dictum massa euismod ac. Proin sit amet tempus elit. Donec sit amet arcu ornare, vehicula quam id, condimentum nisi. Donec fringilla quis lorem in condimentum. </p> <p> <div class="page-header"><h1>Skills</h1></div> In vulputate pretium risus, in pharetra libero tempor et. Fusce posuere orci quis dolor sodales interdum. Sed ultricies sodales purus, at consequat tellus tristique non. Integer id arcu ut nisi egestas interdum a sed neque. Nam ut leo ut odio porta finibus id nec dui. Suspendisse potenti. Mauris eros urna, ullamcorper a luctus interdum, varius quis tortor. Praesent imperdiet, enim at egestas vulputate, lectus sem varius quam, vitae dapibus mauris leo non lacus. </p> <p> <div class="page-header"><h1>Hobbies</h1></div> Morbi at commodo risus. Quisque ornare vel velit sed euismod. Fusce pharetra commodo urna, tincidunt mattis odio elementum vel. Proin eget facilisis magna. Vestibulum et dui quis sem auctor malesuada. Sed nec est viverra, placerat arcu et, lobortis lectus. Quisque ac metus semper, dapibus lorem nec, fermentum augue. Nullam fringilla pellentesque lacus in tempor. Suspendisse gravida fringilla nulla ac venenatis. Nulla elementum feugiat sollicitudin. </p></div>',
@@ -17,13 +18,18 @@ function determineColumnAmount() {
     minimumColumnWidth = stageWidth
     log("had to reduce column width to " + minimumColumnWidth)
   }
-  maxColumns = Math.floor(stageWidth/minimumColumnWidth)
+  columnAmount = Math.floor(stageWidth/minimumColumnWidth)
   // make sure it's divisible by 12
-  maxColumns -= (12 % maxColumns)
-  log("room for " + maxColumns + " columns")
-  log("each should be col-" + (12/maxColumns),true)
-  for (var c=0;c<maxColumns;c++) {
-    sectionBodies.projects += '<div id="column'+c+'" class="col-xs-'+(12/maxColumns)+'"></div>'
+  columnAmount > 6 ? columnAmount = 6 : false
+  if (12 % columnAmount) {
+    if (columnAmount===5) {
+      columnAmount = 4
+    }
+  }  
+  log("room for " + columnAmount + " columns")
+  log("each should be col-" + (12/columnAmount),true)
+  for (var c=0;c<columnAmount;c++) {
+    sectionBodies.projects += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+'"></div>'
   }
   sectionBodies.projects += '</div>'
 }
@@ -35,7 +41,7 @@ function fillSections() { // only called ONCE on body.onload
 }
 function fillProjectCards() {
   var projectList = Object.keys(projectData)
-  var cardsPerColumn = Math.floor(projectList.length/maxColumns) // move to next every nth project
+  var cardsPerColumn = Math.floor(projectList.length/columnAmount) // move to next every nth project
   var targetColumnIndex = 0
   for (var p=0;p<projectList.length;p++) {
     var currentProjectData = projectData[projectList[p]]
@@ -48,7 +54,7 @@ function fillProjectCards() {
     var targetDiv = document.getElementById(targetColumnID)
     // lighten themeColor for panel body
     var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.4)")
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><span"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></span></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'"><h3>'+displayName+'</h3></a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
     // fill descriptions
     var descriptionList = document.getElementById("project-description-"+p)
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
