@@ -73,32 +73,29 @@ function expandOnClick(sectionID,index) {
     button.innerHTML = "Expand"
   }
 }
-function loadSection(section) { // must get rid of this, or make it load all three sections
-  if (section==="projects") {
-    // this only occurs on initial page load
-    document.getElementById("projects").innerHTML = sectionBodies[section]
-    document.getElementById("projects").style.transform = "translateX(0)"
-    document.getElementById("projects").style.opacity = 1
-  } else {
-    document.getElementById("page-body").innerHTML = sectionBodies[section]
-  }
-  currentPage = Object.keys(sectionBodies).indexOf(section)
+function fillSections() { // only called ONCE on body.onload
+  // add html to obscured divs
+  document.getElementById("projects").innerHTML = sectionBodies["projects"]
+  document.getElementById("about").innerHTML = sectionBodies["about"]
+  document.getElementById("contact").innerHTML = sectionBodies["contact"]
+
+  // these need to be position:fixed or something
+
+  // projects section is toggled visible in body.onload after cards are filled
 }
 function toggleSectionVisible(newSection) {
   // newSection now is an ID but will be an object in future (i.e. newSection.id)
   var oldSectionDiv = document.getElementById(currentSection)
   var newSectionDiv = document.getElementById(newSection)
-
   // obscure the currently visible section
   console.log("toggling " + currentSection + " invisible")
   newSectionDiv.style.opacity = 0
   newSectionDiv.style.transform = "translateY(100vh)" // maybe set different "hide/show" animations for each section?
-
   // show the new selected section
   console.log("toggling " + newSection + " visible")
   newSectionDiv.style.opacity = 1
   newSectionDiv.style.transform = "translateX(0)"
+  // these are returning to their origin spot way down the page
 
-  // to use this function, must change about and contact sections to be their own swappable div like #gallery is now
-  
+  currentSection = newSection // very important
 }

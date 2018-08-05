@@ -9,7 +9,7 @@
     <script src="js/script.js"></script>
     <title>Michael Donovan's portfolio</title>
   </head>
-  <body onload="loadSection('projects');fillProjectCards();">
+  <body onload="fillSections();fillProjectCards();toggleSectionVisible(currentSection)">
     <div class="container" style="width:80%">
       <div id="header" class="jumbotron" style="width:95%;margin-left:2.5%">
         <div class="row">
@@ -27,11 +27,14 @@
         <button onclick="toggleBarButton(this);toggleSectionVisible('about')" id="about-button" type="button" class="bar-button btn btn-default">About Me</button>
         <button onclick="toggleBarButton(this);toggleSectionVisible('contact')" id="contact-button" type="button" class="bar-button btn btn-default">Contact</button>
       </div>
-      <div id="projects">
-        <!-- gallery goes here on load -->
+      <div id="projects" class="section">
+        <!-- html goes here on load -->
       </div>
-      <div id="page-body">
-        <!-- section bodies load and unload here -->
+      <div id="about" class="section">
+        <!-- html goes here on load -->
+      </div>
+      <div id="contact" class="section">
+        <!-- html goes here on load -->
       </div>
     </div>
   </body>
