@@ -37,7 +37,7 @@ function determineColumnAmount() {
   log("room for " + columnAmount + " columns")
   log("each should be col-" + (12/columnAmount),true)
   for (var c=0;c<columnAmount;c++) {
-    sections.projects.html += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+'"></div>'
+    sections.projects.html += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+' project-column"></div>'
   }
   sections.projects.html += '</div>'
 }
@@ -57,18 +57,24 @@ function fillProjectCards() {
   var targetColumnIndex = 0
   for (var p=0;p<projectList.length;p++) {
     var currentProjectData = projectData[projectList[p]]
-    var screenshotPath = currentProjectData.screenshots[0].length > 2 ? currentProjectData.screenshots[0] : "img/placeholder.png"
+    if (currentProjectData.screenshots.length < 3) {
+      var needed = 3-currentProjectData.screenshots.length
+      for (var n=currentProjectData.screenshots.length;n<needed;n++) {
+        currentProjectData.screenshots.push("img/placeholder"+n+".png")
+      }
+    }
+    var screenshotPath = currentProjectData.screenshots[0]
     var displayName = currentProjectData.displayName
     var targetColumnID = "column"+targetColumnIndex
-    console.log("putting " + currentProjectData.displayName + ", p " + p + ", into " + targetColumnID)
+    log("putting " + currentProjectData.displayName + ", p " + p + ", into " + targetColumnID)
     var projectID = "project"+p
     var repoURL = "https://www.github.com/eggborne/"+currentProjectData.repo
     var targetDiv = document.getElementById(targetColumnID)
     // lighten themeColor for panel body
     var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.4)")
-    
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot"><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
-    // reduce title font size if too long
+    var galleryContents = '<img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot">'
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    // reduce title font size if too long?
 
     // fill descriptions
     var descriptionList = document.getElementById("project-description-"+p)
@@ -91,8 +97,6 @@ function fillProjectCards() {
   }
   log("added " + projectList.length + " projects")
   var stageWidth = document.getElementById("stage").getBoundingClientRect().width
-  log("stage width: " + stageWidth)
-  log("full width: " + window.innerWidth,true)
 }
 function toggleBarButton(button) {
   button.classList.add('selected')
@@ -124,7 +128,6 @@ function toggleSectionVisible(newSection) {
   var newSectionDiv = document.getElementById(newSection)
   // obscure the currently visible section
   if (newSection!==currentSection) {
-    console.log("toggling " + currentSection + " invisible")
     oldSectionDiv.style.opacity = 0
     // must display:none so that it stops taking up space
     setTimeout(function(){ // delayed in order to show fancy transition
@@ -133,7 +136,6 @@ function toggleSectionVisible(newSection) {
     // TRANSITION DOESN'T WORK PROPERLY
   }
   // show the new selected section
-  console.log("toggling " + newSection + " visible")
   newSectionDiv.style.display = "block"
   newSectionDiv.style.opacity = 1
   document.title = "Michael Donovan | " + sections[newSection].title

@@ -21,7 +21,9 @@ var projectData =
         'PHP',
         'mySQL',
       ],
-      screenshots:['img/frtitle.png']
+      screenshots:[
+        'img/frtitle.png'
+      ]
     },
     'tetro':{
       themeColor:'#150018',
@@ -43,7 +45,9 @@ var projectData =
         'PHP',
         'mySQL',
       ],
-      screenshots:['img/tetrotitle.png']
+      screenshots:[
+        'img/tetrotitle.png'
+      ]
     },
     'metroid':{
       themeColor:'#00004d',
@@ -62,7 +66,9 @@ var projectData =
         'CSS',
         'PIXI.js'
       ],
-      screenshots:['img/metroidtitle.png']
+      screenshots:[
+        'img/metroidtitle.png'
+      ]
     },
     'kungfu':{
       themeColor:'#00004d',
@@ -84,7 +90,9 @@ var projectData =
         'PHP',
         'mySQL'
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     },
     'punchout':{
       themeColor:'#804000',
@@ -104,7 +112,9 @@ var projectData =
         'PIXI.js',
         'Howler.js'
       ],
-      screenshots:['img/punchouttitle.png']
+      screenshots:[
+        'img/punchouttitle.png'
+      ]
     },
     'toad':{
       themeColor:'#002508',
@@ -123,7 +133,9 @@ var projectData =
         'PIXI.js',
         'Howler.js'
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     },
     'cas':{
       themeColor:'#222211',
@@ -142,7 +154,9 @@ var projectData =
         'CSS',
         'PIXI.js'
       ],
-      screenshots:['img/castitle.png']
+      screenshots:[
+        'img/castitle.png'
+      ]
     },
     'eggprotector':{
       themeColor:'#1a0000',
@@ -161,7 +175,9 @@ var projectData =
         'PIXI.js',
         'Howler.js'
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     },
     'spermtyper':{
       themeColor:'#002b2b',
@@ -183,7 +199,9 @@ var projectData =
         'PIXI.js',
         'Howler.js'
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     },
     'yarsrevenge':{
       themeColor:'#252525',
@@ -202,7 +220,9 @@ var projectData =
         'PIXI.js',
         'Howler.js'
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     },
     'clues':{
       themeColor:'#252525',
@@ -224,7 +244,9 @@ var projectData =
         'PHP',
         'mySQL',
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     }
     ,
     'pong':{
@@ -246,6 +268,8 @@ var projectData =
         'PHP',
         'mySQL',
       ],
-      screenshots:['']
+      screenshots:[
+
+      ]
     }
 }
