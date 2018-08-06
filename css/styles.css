@@ -15,21 +15,35 @@ li {
 button {
   /* position:relative;
   width:140px;
-  /* border-radius: 50px; */
+  border-radius: 50px;
   font-size:1.3em;
   padding:10px 20px 10px 20px;
   outline:none !important;
-  transition: all 300ms ease;
+  transition: all 300ms ease; */
 }
 #portrait {
   float:right;
-  margin-top:18px;;
-  height:160px;
-  transform: sc
+  margin-top:15px;;
+  height:120px;
 }
 #button-bar {
   width:95%;
+  max-width:1000px;
   margin:auto;
+}
+#header {
+  border:4px solid #c9d3c9;
+  box-shadow: 0px 0px 16px grey;
+  max-height:300px;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  padding: 10px 20px 5px 20px
+}
+#footer {
+  text-align:center;
+  max-width:1000px;
 }
 #debug {
   position: fixed;
@@ -53,51 +67,59 @@ button {
   border-bottom: 0px;
   background: #b0bdb4;;
   border-radius:12px;
-}
-#footer {
-  text-align:center;
+  box-shadow: 0px 0px 16px grey;
 }
 .panel-title {
-  font-size:1.3em;
+  font-size:1.2em;
   padding:10px 5px 10px 5px;
 }
 .about, .contact {
   background-color:white;
   width:95%;
   border:5px solid #b8ccb8;
+  padding:0% 20% 10% 20%;
 }
 .section {
   margin-top:30px;
   opacity:0;
-  transition: transform 400ms ease, opacity 200ms linear;
+  transition: opacity 200ms linear;
   display:none;
 }
 .contact-grid {
-  border: 3px solid grey;
-  height:160px;
+  border: 2px solid grey;
+  border-radius:5px;
+  height:100px;
+  width:100%;
 }
 .bar-button {
-  font-weight:bold;
-  /* width:calc(100% / 3); */
-  /* height:90px; */
+  /* font-weight:bold; */
   font-size:1.2em;
   box-shadow: 0px 0px 5px rgb(100, 100, 100);
   text-align:center;
   padding:10px 0px 10px 0px;
-  background:rgb(199, 199, 199);
+  background:rgb(205, 236, 215);
   color:rgb(54, 54, 54);
   border:3px outset rgb(180, 180, 180);
   transition: all 300ms ease;
   border-radius:5px;
 }
+.bar-button:hover {
+  /* border:3px outset rgb(161, 214, 161); */
+  /* color:black; */
+  background:rgb(46, 153, 46);
+  color:white;
+  letter-spacing: 0.15em;
+}
+.bar-button:active {
+  background:green;
+  border:3px outset rgb(93, 173, 93);
+}
 .selected {
   background:green;
   color:white;
   border:3px inset rgb(93, 173, 93);
+  letter-spacing: 0.15em;
 }
-/* .bar-button:hover {
-  background:#afa;
-} */
 .project-card {
   width:100%;
   margin-bottom:40px;
@@ -108,9 +130,6 @@ button {
   width:100%;
   margin-bottom:20px;
   transition: opacity 300ms ease;
-}
-.screenshot:hover {
-  opacity:0.7;
 }
 .right-icon {
   padding-left: 10px;
@@ -127,17 +146,38 @@ button {
   height:0px;
   overflow: hidden;
 }
-.jumbotron {
-  padding-top:10px;
-  padding-bottom:5px;
-  margin-top:3px;
-  box-shadow: 0px 0px 16px grey;
-}
 .panel > .panel-heading {
   color:white;
 }
 .panel > .panel-footer {
   color:white;
+}
+@media (min-width:1200px) {
+  #stage {
+    width:85%;
+  }
+}
+@media (max-width:600px) {
+  body {
+    background:blue;
+    min-width:300px;
+  }
+  .jumbotron {
+    min-width:220px;
+    padding:none;
+  }
+  h2 > strong {
+    font-size: 20px;
+  }
+  h3 > em {
+    font-size: 14px;
+    white-space:nowrap;
+
+  }
+  #portrait {
+    height:80px;
+    
+  }
 }
 /* @media (max-width:620px) {
   .bar-button {

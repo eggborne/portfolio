@@ -2,13 +2,20 @@ var currentSection = "projects" // must change to sections.projects once section
 var minimumColumnWidth = 350
 var maxColumns = 6
 var columnAmount
-var sectionBodies = { // include this in sections obj as sections.html
-  projects : '<div class="row">', // the rest is filled with determineColumnAmout()
-  about : '<div class="container about"><p> <div class="page-header"><h1>Education</h1></div> Nullam bibendum mi dapibus, pretium mauris non, porttitor nisl. Quisque mollis tempus semper. Etiam convallis vehicula neque, sit amet mollis nibh posuere vel. Aenean viverra arcu id congue dignissim. Mauris diam lorem, condimentum vel diam quis, dapibus sollicitudin ligula. Fusce sed luctus ante. Sed sit amet eros tempor, sollicitudin erat id, luctus leo. Curabitur eget aliquet dui, et sollicitudin turpis. Aenean eget molestie risus, eu pulvinar lorem. Aliquam sed velit dolor. Curabitur vel elit felis. Nam viverra dui nisi, quis dictum massa euismod ac. Proin sit amet tempus elit. Donec sit amet arcu ornare, vehicula quam id, condimentum nisi. Donec fringilla quis lorem in condimentum. </p> <p> <div class="page-header"><h1>Skills</h1></div> In vulputate pretium risus, in pharetra libero tempor et. Fusce posuere orci quis dolor sodales interdum. Sed ultricies sodales purus, at consequat tellus tristique non. Integer id arcu ut nisi egestas interdum a sed neque. Nam ut leo ut odio porta finibus id nec dui. Suspendisse potenti. Mauris eros urna, ullamcorper a luctus interdum, varius quis tortor. Praesent imperdiet, enim at egestas vulputate, lectus sem varius quam, vitae dapibus mauris leo non lacus. </p> <p> <div class="page-header"><h1>Hobbies</h1></div> Morbi at commodo risus. Quisque ornare vel velit sed euismod. Fusce pharetra commodo urna, tincidunt mattis odio elementum vel. Proin eget facilisis magna. Vestibulum et dui quis sem auctor malesuada. Sed nec est viverra, placerat arcu et, lobortis lectus. Quisque ac metus semper, dapibus lorem nec, fermentum augue. Nullam fringilla pellentesque lacus in tempor. Suspendisse gravida fringilla nulla ac venenatis. Nulla elementum feugiat sollicitudin. </p></div>',
-  contact : '<div class="container contact"><div class="page-header"><h1>Contact Mike</h1></div> <div class="row"> <div class="col-lg-4 contact-grid"> <h2>Phone:</h2> <h3><strong>360-936-8442</strong></h3> </div> <div class="col-lg-4 contact-grid"> <h2>Email:</h2> <h3><a href="mailto:mike@eggborne.com"><strong>mike@eggborne.com</strong></a></h3> </div> <div class="col-lg-4 contact-grid"> <h2>GitHub:</h2> <h3><a href="https://www.github.com/eggborne"><strong>github.com/eggborne</strong></a></h3> </div> </div>'
+var sections = {
+  projects : {
+    html : '<div class="row">', // the rest is filled with determineColumnAmout()
+    title : 'Projects'
+  },
+  about : {
+    html : '<div class="container about"><p> <div class="page-header"><h1>Education</h1></div> Nullam bibendum mi dapibus, pretium mauris non, porttitor nisl. Quisque mollis tempus semper. Etiam convallis vehicula neque, sit amet mollis nibh posuere vel. Aenean viverra arcu id congue dignissim. Mauris diam lorem, condimentum vel diam quis, dapibus sollicitudin ligula. Fusce sed luctus ante. Sed sit amet eros tempor, sollicitudin erat id, luctus leo. Curabitur eget aliquet dui, et sollicitudin turpis. Aenean eget molestie risus, eu pulvinar lorem. Aliquam sed velit dolor. Curabitur vel elit felis. Nam viverra dui nisi, quis dictum massa euismod ac. Proin sit amet tempus elit. Donec sit amet arcu ornare, vehicula quam id, condimentum nisi. Donec fringilla quis lorem in condimentum. </p> <p> <div class="page-header"><h1>Skills</h1></div> In vulputate pretium risus, in pharetra libero tempor et. Fusce posuere orci quis dolor sodales interdum. Sed ultricies sodales purus, at consequat tellus tristique non. Integer id arcu ut nisi egestas interdum a sed neque. Nam ut leo ut odio porta finibus id nec dui. Suspendisse potenti. Mauris eros urna, ullamcorper a luctus interdum, varius quis tortor. Praesent imperdiet, enim at egestas vulputate, lectus sem varius quam, vitae dapibus mauris leo non lacus. </p> <p> <div class="page-header"><h1>Hobbies</h1></div> Morbi at commodo risus. Quisque ornare vel velit sed euismod. Fusce pharetra commodo urna, tincidunt mattis odio elementum vel. Proin eget facilisis magna. Vestibulum et dui quis sem auctor malesuada. Sed nec est viverra, placerat arcu et, lobortis lectus. Quisque ac metus semper, dapibus lorem nec, fermentum augue. Nullam fringilla pellentesque lacus in tempor. Suspendisse gravida fringilla nulla ac venenatis. Nulla elementum feugiat sollicitudin. </p></div>',
+    title : 'About Me'
+  },
+  contact : {
+    html : '<div class="container contact"><div class="page-header"><h2>Contact Mike</h2></div> <div class="row"> <div class="col-md-4 contact-grid"> <h3>Phone:</h3> <h4><strong>360-936-8442</strong></h4> </div> <div class="col-md-4 contact-grid"> <h3>Email:</h3> <h4><a href="mailto:mike@eggborne.com"><strong>mike@eggborne.com</strong></a></h4> </div> <div class="col-md-4 contact-grid"> <h3>GitHub:</h3> <h4><a href="https://www.github.com/eggborne"><strong>github.com/eggborne</strong></a></h4> </div> </div>',
+    title : 'Contact'
+  }
 }
-
-
 function determineColumnAmount() {
   var stageWidth = document.getElementById("stage").getBoundingClientRect().width
   log("minimumColumnWidth: " + minimumColumnWidth)
@@ -30,14 +37,18 @@ function determineColumnAmount() {
   log("room for " + columnAmount + " columns")
   log("each should be col-" + (12/columnAmount),true)
   for (var c=0;c<columnAmount;c++) {
-    sectionBodies.projects += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+'"></div>'
+    sections.projects.html += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+'"></div>'
   }
-  sectionBodies.projects += '</div>'
+  sections.projects.html += '</div>'
 }
 function fillSections() { // only called ONCE on body.onload
-  document.getElementById("projects").innerHTML = sectionBodies["projects"]
-  document.getElementById("about").innerHTML = sectionBodies["about"]
-  document.getElementById("contact").innerHTML = sectionBodies["contact"]
+  for (var s=0;s<Object.keys(sections).length;s++) {
+    var section = sections[s]
+
+  }
+  document.getElementById("projects").innerHTML = sections.projects.html
+  document.getElementById("about").innerHTML = sections.about.html
+  document.getElementById("contact").innerHTML = sections.contact.html
   // projects section is toggled visible in body.onload after cards are filled
 }
 function fillProjectCards() {
@@ -106,24 +117,23 @@ function expandOnClick(sectionID,index) {
   }
 }
 function toggleSectionVisible(newSection) {
-  // newSection now is an ID but will be an object in future (i.e. newSection.id)
   var oldSectionDiv = document.getElementById(currentSection)
   var newSectionDiv = document.getElementById(newSection)
-
   // obscure the currently visible section
   if (newSection!==currentSection) {
     console.log("toggling " + currentSection + " invisible")
     oldSectionDiv.style.opacity = 0
-
     // must display:none so that it stops taking up space
     setTimeout(function(){ // delayed in order to show fancy transition
       oldSectionDiv.style.display = "none"
     },200)
+    // TRANSITION DOESN'T WORK PROPERLY
   }
   // show the new selected section
   console.log("toggling " + newSection + " visible")
   newSectionDiv.style.display = "block"
   newSectionDiv.style.opacity = 1
+  document.title = "Michael Donovan | " + sections[newSection].title
   currentSection = newSection // very important
 }
 function log(message,lineBreak) {
@@ -132,6 +142,7 @@ function log(message,lineBreak) {
   } else {
     document.getElementById("debug").innerHTML += "<br>"+message
   }
+  console.log(message)
 }
 function clearLog() {
   document.getElementById("debug").innerHTML = ""
