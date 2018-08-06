@@ -90,6 +90,9 @@ function fillProjectCards() {
     }
   }
   log("added " + projectList.length + " projects")
+  var stageWidth = document.getElementById("stage").getBoundingClientRect().width
+  log("stage width: " + stageWidth)
+  log("full width: " + window.innerWidth,true)
 }
 function toggleBarButton(button) {
   button.classList.add('selected')
