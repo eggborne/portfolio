@@ -28,9 +28,9 @@ h2 > strong {
   margin:auto;
 }
 #header {
-  border:4px solid #c9d3c9;
+  border:5px solid #c9d3c9;
   border-radius:12px;
-  box-shadow: 0px 0px 16px grey;
+  box-shadow: 0px 0px 2px grey;
   max-height:300px;
   max-width:1000px;
   min-width:220px;
@@ -109,10 +109,11 @@ h2 > strong {
   width:100%;
 }
 .bar-button {
+  cursor: pointer;
   box-sizing: border-box;
   font-size:1.1em;
   /* box-shadow: 0px 0px 5px rgb(100, 100, 100); */
-  box-shadow: 0px 0px 2px black;
+  box-shadow: 0px 0px 2px grey;
   text-align:center;
   padding:10px 0px 10px 0px;
   background:rgb(205, 236, 215);
@@ -135,7 +136,7 @@ h2 > strong {
   /* border:3px inset rgb(93, 173, 93); */
   border:5px solid rgb(61, 131, 52);
   letter-spacing: 0.1em;
-  /* transform: scaleY(1.5) */
+  transform: scaleY(1.1)
 }
 .project-column {
   padding:10px;
@@ -182,6 +183,12 @@ h2 > strong {
 @media (max-width:768px) {
   body {
     width:95%;
+  }
+  .bar-button {
+    transform:scaleX(0.95)
+  }
+  .bar-button.selected {
+    transform:scaleX(1)
   }
   #stage {
     padding-left:3%;

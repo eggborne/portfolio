@@ -124,11 +124,14 @@ function expandOnClick(sectionID,index) {
   }
 }
 function toggleSectionVisible(newSection) {
-  $('#'+currentSection).fadeOut(100)
   $('#'+newSection).fadeIn(300)
-  if (currentSection !== newSection) {
-    document.title = "Michael Donovan | " + sections[newSection].title
-    currentSection = newSection // very important
+  if (newSection !== currentSection) {
+    $('#'+currentSection).fadeOut(100)
+    
+    if (currentSection !== newSection) {
+      document.title = "Michael Donovan | " + sections[newSection].title
+      currentSection = newSection // very important
+    }
   }
 }
 function log(message,lineBreak) {
