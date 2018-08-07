@@ -72,8 +72,8 @@ function fillProjectCards() {
     var targetDiv = document.getElementById(targetColumnID)
     // lighten themeColor for panel body
     var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.4)")
-    var galleryContents = '<img class="thumbnail screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot">'
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer" style="background-color:#ccc"><div class="row"><div class="col-sm-6"><a href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    var galleryContents = '<img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot">'
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><a style="color:white" href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a style="color:white" href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
     // reduce title font size if too long?
 
     // fill descriptions
@@ -124,22 +124,12 @@ function expandOnClick(sectionID,index) {
   }
 }
 function toggleSectionVisible(newSection) {
-  var oldSectionDiv = document.getElementById(currentSection)
-  var newSectionDiv = document.getElementById(newSection)
-  // obscure the currently visible section
-  if (newSection!==currentSection) {
-    oldSectionDiv.style.opacity = 0
-    // must display:none so that it stops taking up space
-    setTimeout(function(){ // delayed in order to show fancy transition
-      oldSectionDiv.style.display = "none"
-    },200)
-    // TRANSITION DOESN'T WORK PROPERLY
+  $('#'+currentSection).fadeOut(100)
+  $('#'+newSection).fadeIn(300)
+  if (currentSection !== newSection) {
+    document.title = "Michael Donovan | " + sections[newSection].title
+    currentSection = newSection // very important
   }
-  // show the new selected section
-  newSectionDiv.style.display = "block"
-  newSectionDiv.style.opacity = 1
-  document.title = "Michael Donovan | " + sections[newSection].title
-  currentSection = newSection // very important
 }
 function log(message,lineBreak) {
   if (lineBreak) {
@@ -149,10 +139,6 @@ function log(message,lineBreak) {
   }
   console.log(message)
 }
-function clearLog() {
-  document.getElementById("debug").innerHTML = ""
-}
-
 // swiped this from Stack Overflow
 function hexToRgbA(hex){
   var c
