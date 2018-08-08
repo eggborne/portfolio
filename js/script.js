@@ -1,10 +1,12 @@
-var currentSection = "projects" // must change to sections.projects once sections obj is made
+var currentSection = "projects"
 var minimumColumnWidth = 350
+var maximumColumnWidth = 500
 var maxColumns = 6
+var noResize = false
 var columnAmount
 var sections = {
   projects : {
-    html : '<div class="row">', // the rest is filled with determineColumnAmout()
+    html : '', // this is filled with determineColumnAmount()
     title : 'Projects'
   },
   about : {
@@ -16,40 +18,38 @@ var sections = {
     title : 'Contact'
   }
 }
+$(window).resize(function(){
+  // check if columns are inappropriately large or small
+  if ($('#column0').width() < minimumColumnWidth || $('#column0').width() > maximumColumnWidth ) {
+    determineColumnAmount()
+    document.getElementById("projects").innerHTML = sections.projects.html
+    fillProjectCards()
+  }
+})
 function determineColumnAmount() {
   var stageWidth = document.getElementById("stage").getBoundingClientRect().width
-  log("minimumColumnWidth: " + minimumColumnWidth)
-  log("maxColumns: " + maxColumns)
-  log("stage width: " + stageWidth)
-  log("full width: " + window.innerWidth,true)
-  if (minimumColumnWidth>stageWidth) {
+  if (minimumColumnWidth > stageWidth) {
     minimumColumnWidth = stageWidth
-    log("had to reduce column width to " + minimumColumnWidth)
   }
   columnAmount = Math.floor(stageWidth/minimumColumnWidth)
   // make sure it's divisible by 12
-  columnAmount > 6 ? columnAmount = 6 : false
+  columnAmount > 6 ? columnAmount = 6 : null
   if (12 % columnAmount) {
     if (columnAmount===5) {
       columnAmount = 4
     }
-  }  
-  log("room for " + columnAmount + " columns")
-  log("each should be col-" + (12/columnAmount),true)
+  }
+  sections.projects.html = '<div class="row">' // this clears it out, if already filled
   for (var c=0;c<columnAmount;c++) {
     sections.projects.html += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+' project-column"></div>'
   }
   sections.projects.html += '</div>'
 }
 function fillSections() { // only called ONCE on body.onload
-  for (var s=0;s<Object.keys(sections).length;s++) {
-    var section = sections[s]
-
-  }
   document.getElementById("projects").innerHTML = sections.projects.html
   document.getElementById("about").innerHTML = sections.about.html
   document.getElementById("contact").innerHTML = sections.contact.html
-  // projects section is toggled visible in body.onload after cards are filled
+  // projects section is toggled visible in body.onload AFTER cards are filled
 }
 function fillProjectCards() {
   var projectList = Object.keys(projectData)
@@ -65,17 +65,15 @@ function fillProjectCards() {
     }
     var screenshotPath = currentProjectData.screenshots[0]
     var displayName = currentProjectData.displayName
+    console.log()
     var targetColumnID = "column"+targetColumnIndex
-    log("putting " + currentProjectData.displayName + ", p " + p + ", into " + targetColumnID)
     var projectID = "project"+p
     var repoURL = "https://www.github.com/eggborne/"+currentProjectData.repo
     var targetDiv = document.getElementById(targetColumnID)
     // lighten themeColor for panel body
-    var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.4)")
+    var bodyColor = hexToRgbA(currentProjectData.themeColor).replace("1)","0.5)")
     var galleryContents = '<img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot">'
     targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+currentProjectData.themeColor+'"><h2 class="panel-title"><a href="'+currentProjectData.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandOnClick(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><a style="color:white" href="'+currentProjectData.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a style="color:white" href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
-    // reduce title font size if too long?
-
     // fill descriptions
     var descriptionList = document.getElementById("project-description-"+p)
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
@@ -95,8 +93,6 @@ function fillProjectCards() {
       targetColumnIndex++
     }
   }
-  log("added " + projectList.length + " projects")
-  var stageWidth = document.getElementById("stage").getBoundingClientRect().width
 }
 function toggleBarButton(button) {
   button.classList.add('selected')
