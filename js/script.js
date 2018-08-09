@@ -65,7 +65,6 @@ function fillProjectCards() {
     }
     var screenshotPath = currentProjectData.screenshots[0]
     var displayName = currentProjectData.displayName
-    console.log()
     var targetColumnID = "column"+targetColumnIndex
     var projectID = "project"+p
     var repoURL = "https://www.github.com/eggborne/"+currentProjectData.repo
