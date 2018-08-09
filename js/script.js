@@ -1,8 +1,7 @@
 var currentSection = "projects"
 var minimumColumnWidth = 350
-var maximumColumnWidth = 500
+var maximumColumnWidth = 480
 var maxColumns = 6
-var noResize = false
 var columnAmount
 var sections = {
   projects : {
@@ -18,12 +17,13 @@ var sections = {
     title : 'Contact'
   }
 }
+var projectList = shuffle(Object.keys(projectData))
 $(window).resize(function(){
   // check if columns are inappropriately large or small
   if ($('#column0').width() < minimumColumnWidth || $('#column0').width() > maximumColumnWidth ) {
     determineColumnAmount()
     document.getElementById("projects").innerHTML = sections.projects.html
-    fillProjectCards()
+    fillProjectCards(false)
   }
 })
 function determineColumnAmount() {
@@ -52,7 +52,6 @@ function fillSections() { // only called ONCE on body.onload
   // projects section is toggled visible in body.onload AFTER cards are filled
 }
 function fillProjectCards() {
-  var projectList = Object.keys(projectData)
   var cardsPerColumn = Math.floor(projectList.length/columnAmount) // move to next every nth project
   var targetColumnIndex = 0
   for (var p=0;p<projectList.length;p++) {
@@ -129,6 +128,26 @@ function toggleSectionVisible(newSection) {
     }
   }
 }
+function shuffle(arr) {
+  // make a big empty array and fill it with zeroes
+  var randomPool = new Array(100).fill(0,0,100) // higher = more random?
+  var filledIndexes = []
+  var shuffledArray = []
+  // place projects in the array at random spots
+  arr.forEach(function(projectKey) {
+    var randomIndex = randomInt(0,randomPool.length-1)
+    while (randomPool[randomIndex]) { // get another randomIndex if it came up before
+      randomIndex = randomInt(0,99)
+    }
+    randomPool[randomIndex] = projectKey
+    filledIndexes.push(randomIndex)
+  });
+  // put nonzeroes from array into shuffledArray
+  randomPool.forEach(function(entry){
+    entry ? shuffledArray.push(entry) : null
+  })
+  return shuffledArray
+}
 function log(message,lineBreak) {
   if (lineBreak) {
     document.getElementById("debug").innerHTML += "<p>"+message
@@ -137,15 +156,18 @@ function log(message,lineBreak) {
   }
   console.log(message)
 }
+function randomInt(min,max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 // swiped this from Stack Overflow
 function hexToRgbA(hex){
   var c
   if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-      c= hex.substring(1).split('');
-      if(c.length== 3){
-          c= [c[0], c[0], c[1], c[1], c[2], c[2]]
-      }
-      c= '0x'+c.join('')
-      return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)'
+    c= hex.substring(1).split('');
+    if(c.length== 3){
+        c= [c[0], c[0], c[1], c[1], c[2], c[2]]
+    }
+    c= '0x'+c.join('')
+    return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)'
   }
 }
