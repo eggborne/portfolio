@@ -1,9 +1,7 @@
 var currentSection = "projects"
 var minimumColumnWidth = 350, maximumColumnWidth = 480
 var maxColumns = 6, columnAmount
-console.log(Object.keys(projectData))
 var projectList = shuffle(Object.keys(projectData))
-console.log(projectList)
 var sections = {
   projects : {
     html : '', // filled with conceiveProjectGrid()
@@ -100,9 +98,9 @@ function toggleSectionVisible(newSection) {
 }
 function toggleBarButton(button) {
   button.classList.add('selected')
-  var barButtonArray = document.getElementsByClassName("bar-button")
+  var barButtonArray = Array.from(document.getElementsByClassName("bar-button"))
   barButtonArray.forEach(function(barButton){
-		barButton !== button ? currentButton.classList.remove('selected') : false
+		barButton !== button ? barButton.classList.remove('selected') : false
 	})
 }
 function expandInfoArea(sectionID,index) {
