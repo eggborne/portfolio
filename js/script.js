@@ -5,7 +5,7 @@ var maxColumns = 6
 var columnAmount
 var sections = {
   projects : {
-    html : '', // this is filled with determineColumnAmount()
+    html : '', // filled with determineColumnAmount()
     title : 'Projects'
   },
   about : {
@@ -19,18 +19,22 @@ var sections = {
 }
 var projectList = shuffle(Object.keys(projectData))
 $(window).resize(function(){
-  // check if columns are inappropriately large or small
+  // check if column width is out of bounds
   if ($('#column0').width() < minimumColumnWidth || $('#column0').width() > maximumColumnWidth ) {
+    // overwrite new grid HTML to sections.projects.html
     determineColumnAmount()
+    // fill #projects div with grid HTML
     document.getElementById("projects").innerHTML = sections.projects.html
+    // fill #projects with project cards
     fillProjectCards(false)
   }
 })
-function determineColumnAmount() {
+function determineColumnAmount() { // *must split into separate determine/create functions
   var stageWidth = document.getElementById("stage").getBoundingClientRect().width
   if (minimumColumnWidth > stageWidth) {
     minimumColumnWidth = stageWidth
   }
+  // check how many columns could fit
   columnAmount = Math.floor(stageWidth/minimumColumnWidth)
   // make sure it's divisible by 12
   columnAmount > 6 ? columnAmount = 6 : null
@@ -39,7 +43,7 @@ function determineColumnAmount() {
       columnAmount = 4
     }
   }
-  sections.projects.html = '<div class="row">' // this clears it out, if already filled
+  sections.projects.html = '<div class="row">'
   for (var c=0;c<columnAmount;c++) {
     sections.projects.html += '<div id="column'+c+'" class="col-xs-'+(12/columnAmount)+' project-column"></div>'
   }
@@ -51,17 +55,20 @@ function fillSections() { // only called ONCE on body.onload
   document.getElementById("contact").innerHTML = sections.contact.html
   // projects section is toggled visible in body.onload AFTER cards are filled
 }
-function fillProjectCards() {
-  var cardsPerColumn = Math.floor(projectList.length/columnAmount) // move to next every nth project
+function fillProjectCards() { // called on load AND on resize
+  var cardsPerColumn = Math.floor(projectList.length/columnAmount)
   var targetColumnIndex = 0
   for (var p=0;p<projectList.length;p++) {
     var currentProjectData = projectData[projectList[p]]
+    // add numbered placeholders
+    // *for testing carousel
     if (currentProjectData.screenshots.length < 3) {
       var needed = 3-currentProjectData.screenshots.length
       for (var n=currentProjectData.screenshots.length;n<needed;n++) {
         currentProjectData.screenshots.push("img/placeholder"+n+".png")
       }
     }
+    // *
     var screenshotPath = currentProjectData.screenshots[0]
     var displayName = currentProjectData.displayName
     var targetColumnID = "column"+targetColumnIndex
@@ -77,7 +84,7 @@ function fillProjectCards() {
     for (var d=0;d<currentProjectData.descriptionBullets.length;d++) {
       var currentBullet = currentProjectData.descriptionBullets[d]
       if (currentBullet.length) {
-        descriptionList.innerHTML += '<li>'+currentBullet+'</span></li>'
+        descriptionList.innerHTML += '<li>'+currentBullet+'</span></li>' // why the </span>?
       }
     }
     // fill tech lists
@@ -86,8 +93,8 @@ function fillProjectCards() {
       var currentTechBullet = currentProjectData.techBullets[t]
       techList.innerHTML += '<li class="tech-bullet"><span class="label label-success">'+currentTechBullet+'</span></li>'
     }
-    // move to next column if appropriate
-    if ((p+1)%cardsPerColumn===0) {
+    // move to next column every cardsPerColumn-th project
+    if ((p+1)%cardsPerColumn===0) { // *count from 1 to avoid moving when p = 0
       targetColumnIndex++
     }
   }
@@ -121,22 +128,23 @@ function toggleSectionVisible(newSection) {
   $('#'+newSection).fadeIn(300)
   if (newSection !== currentSection) {
     $('#'+currentSection).fadeOut(100)
-    
     if (currentSection !== newSection) {
       document.title = "Michael Donovan | " + sections[newSection].title
-      currentSection = newSection // very important
+      currentSection = newSection
     }
   }
 }
 function shuffle(arr) {
-  // make a big empty array and fill it with zeroes
-  var randomPool = new Array(100).fill(0,0,100) // higher = more random?
+  // make a large array filled with zeroes
+  var randomPool = new Array(100).fill(0,0,100) // larger = more random?
   var filledIndexes = []
   var shuffledArray = []
-  // place projects in the array at random spots
+  // replace random zeroes with original array members
   arr.forEach(function(projectKey) {
     var randomIndex = randomInt(0,randomPool.length-1)
-    while (randomPool[randomIndex]) { // get another randomIndex if it came up before
+    // get another randomIndex if pool already contains a nonzero there
+    // *or splice it in and remove an arbitrary zero?
+    while (randomPool[randomIndex]) {
       randomIndex = randomInt(0,99)
     }
     randomPool[randomIndex] = projectKey
@@ -156,10 +164,10 @@ function log(message,lineBreak) {
   }
   console.log(message)
 }
+// swiped these from Stack Overflow
 function randomInt(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-// swiped this from Stack Overflow
 function hexToRgbA(hex){
   var c
   if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
