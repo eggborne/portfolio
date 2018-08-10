@@ -1,212 +1,212 @@
 html {
-  --border-color:#b8ccb8;
-  --bg-color:#727c75;
+  --border-color: #b8ccb8;
+  --bg-color: #727c75;
 }
 body {
   background: var(--bg-color);
-  font-size:16px;
-  overflow-y:scroll;
-  image-rendering:pixelated;
-  min-width:360px;
+  font-size: 16px;
+  overflow-y: scroll;
+  image-rendering: pixelated;
+  min-width: 360px;
   box-sizing: border-box;
-  margin:0 auto;
+  margin: 0 auto;
 }
 li {
-  padding:5px;
+  padding: 5px;
 }
 h2 > strong {
   white-space: nowrap;
 }
 #portrait {
-  float:right;
-  margin-top:15px;;
-  height:120px;
+  float: right;
+  margin-top: 15px;;
+  height: 120px;
 }
 #button-bar {
-  width:95%;
-  max-width:1000px;
-  margin:auto;
+  width: 95%;
+  max-width: 1000px;
+  margin: auto;
 }
 #header {
-  border:5px solid #c9d3c9;
-  border-radius:12px;
+  border: 5px solid #c9d3c9;
+  border-radius: 12px;
   box-shadow: 0px 0px 2px grey;
-  max-height:300px;
-  max-width:1000px;
-  min-width:220px;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:3px;
+  max-height: 300px;
+  max-width: 1000px;
+  min-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
   padding: 10px 20px 5px 20px
 }
 #footer {
-  text-align:center;
-  max-width:1000px;
+  text-align: center;
+  max-width: 1000px;
 }
 #debug {
   position: fixed;
-  background:rgb(0,0,0,0.8);
-  width:50%;
-  min-height:100%;
-  top:0;
-  left:0;
-  padding:1% 2%;
-  color:white;
+  background: rgb(0,0,0,0.8);
+  width: 50%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  padding: 1% 2%;
+  color: white;
   pointer-events: none;
-  font-size:10px;
-  display:none;
+  font-size: 10px;
+  display: none;
 }
 .container {
-  margin-top:2%;
-  margin-bottom:2%;
-  padding:30px;
-  border:5px solid var(--border-color);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 30px;
+  border: 5px solid var(--border-color);
   border-top: 0px;
   border-bottom: 0px;
   background: #b0bdb4;
-  border-radius:12px;
+  border-radius: 12px;
   box-shadow: 0px 0px 2px rgb(107, 107, 107);
 }
 .panel {
-  border-radius:12px;
-  border:0px;
+  border-radius: 12px;
+  border: 0px;
 }
 .panel > .panel-heading {
-  color:white;
-  border-radius:12px 12px 0px 0px;
-  border:4px solid var(--border-color);
+  color: white;
+  border-radius: 12px 12px 0px 0px;
+  border: 4px solid var(--border-color);
   background: #b0bdb4;
 }
 .panel-heading > .panel-title {
-  font-size:1.2em;
-  padding:10px 5px 10px 5px;
+  font-size: 1.2em;
+  padding: 10px 5px 10px 5px;
 }
 .panel > .panel-body {
-  border:5px solid #b1b1b1;
+  border: 5px solid #b1b1b1;
 }
 .panel-footer {
-  color:white;
-  background-color:#b1b1b1;
-  border-radius:0px 0px 12px 12px;
-  border:0px;
+  color: white;
+  background-color: #b1b1b1;
+  border-radius: 0px 0px 12px 12px;
+  border: 0px;
 }
 .about, .contact {
   background-color:white;
-  width:100%;
-  border:5px solid var(--border-color);
-  padding:0% 16% 10% 16%;
+  width: 100%;
+  border: 5px solid var(--border-color);
+  padding: 0% 16% 10% 16%;
 }
 .section {
-  margin-top:30px;
-  display:none;
+  margin-top: 30px;
+  display: none;
 }
 .contact-grid {
   border: 2px solid grey;
-  border-radius:5px;
-  height:100px;
-  width:100%;
+  border-radius: 5px;
+  height: 100px;
+  width: 100%;
 }
 .bar-button {
   cursor: pointer;
   box-sizing: border-box;
-  font-size:1.1em;
+  font-size: 1.1em;
   box-shadow: 0px 0px 2px grey;
-  text-align:center;
-  padding:10px 0px 10px 0px;
-  background:rgb(205, 236, 215);
-  color:rgb(54, 54, 54);
-  border:5px solid #b8ccb8;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  background: rgb(205, 236, 215);
+  color: rgb(54, 54, 54);
+  border: 5px solid #b8ccb8;
   transition: all 300ms ease-in-out;
-  border-radius:12px;
+  border-radius: 12px;
 }
 .bar-button:not(.selected):hover {
-  border:5px solid rgb(66, 187, 66);
+  border: 5px solid rgb(66, 187, 66);
 }
 .bar-button:not(.selected):active {
-  background:rgb(180, 226, 180);
-  border:5px solid rgb(66, 187, 66);
+  background: rgb(180, 226, 180);
+  border: 5px solid rgb(66, 187, 66);
 }
 .selected {
-  background:green;
-  color:white;
-  border:5px solid rgb(61, 131, 52);
+  background: green;
+  color: white;
+  border: 5px solid rgb(61, 131, 52);
   letter-spacing: 0.1em;
   transform: scaleY(1.1)
 }
 .project-column {
-  padding:10px;
-  padding-top:0;
+  padding: 10px;
+  padding-top: 0;
 }
 .project-card {
-  width:100%;
-  margin-bottom:30px;
+  width: 100%;
+  margin-bottom: 30px;
   box-shadow: 0px 0px 2px black;
 }
 .screenshot {
-  border-radius:12px;
-  border:6px solid #b1b1b1;
+  border-radius: 12px;
+  border: 6px solid #b1b1b1;
   background: #b0bdb4;
   box-shadow: 0px 0px 2px black;
-  width:100%;
-  margin-bottom:20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 .right-icon {
   padding-left: 10px;
-  height:30px;
+  height: 30px;
 }
 .left-icon {
   padding-right: 10px;
-  height:30px;
+  height: 30px;
 }
 .tech-bullet {
-  font-size:1.2em;
+  font-size: 1.2em;
 }
 .collapsed {
-  height:0px;
+  height: 0px;
   overflow: hidden;
 }
 /* extra wide */
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
   #stage {
-    width:85%;
+    width: 85%;
   }
 }
 /* tablet/phone */
-@media (max-width:768px) {
+@media (max-width: 768px) {
   body {
-    width:95%;
+    width: 95%;
   }
   .bar-button {
-    transform:scaleX(0.95)
+    transform: scaleX(0.95)
   }
   .bar-button.selected {
-    transform:scaleX(1)
+    transform: scaleX(1)
   }
   #stage {
-    padding-left:3%;
-    padding-right:3%;
+    padding-left: 3%;
+    padding-right: 3%;
     padding: 0 3% 0 3%;
-    margin:0px;
-    border-radius:0;
-    border:0px;
+    margin: 0px;
+    border-radius: 0;
+    border: 0px;
   }
   .about, .contact {
-    padding:0% 10% 10% 10%;
+    padding: 0% 10% 10% 10%;
   }
   #footer {
     margin: 0px;
-    box-shadow:none;
-    border-radius:0px;
+    box-shadow: none;
+    border-radius: 0px;
   }
   .container > #stage {
     border-radius:0;
   }
   #header {
-    border:0px;
+    border: 0px;
     box-shadow: none;
-    margin-top:0px;
-    padding:0px 5% 0px 5%;
-    border-radius:0px;
+    margin-top: 0px;
+    padding: 0px 5% 0px 5%;
+    border-radius: 0px;
   }
   h2 > strong {
     font-size: 18px;
@@ -215,9 +215,9 @@ h2 > strong {
     font-size: 16px;
   }
   #head-text {
-    float:left;
+    float: left;
   }
   #portrait {
-    height:120px;
+    height: 120px;
   }
 }
