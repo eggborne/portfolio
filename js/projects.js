@@ -19,7 +19,7 @@ var projectData =
         'PIXI\.js',
         'Howler\.js',
         'PHP',
-        'mySQL',
+        'mySQL'
       ],
       screenshots:[
         'img/frtitle.png'
@@ -43,7 +43,7 @@ var projectData =
         'PIXI.js',
         'Howler.js',
         'PHP',
-        'mySQL',
+        'mySQL'
       ],
       screenshots:[
         'img/tetrotitle.png'

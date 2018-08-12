@@ -72,7 +72,6 @@ function createProjectCards() { // called on load AND on resize
     // fill descriptions
 		var descriptionList = document.getElementById("project-description-"+p)
 		project.descriptionBullets.forEach(function(bullet){
-			console.log("print bullet " + bullet)
 			bullet.length ? descriptionList.innerHTML += '<li>'+bullet+'</span></li>' : false;
 		})
     // fill tech lists
@@ -140,7 +139,6 @@ function shuffle(arr) {
 }
 function log(message,lineBreak) {
 	lineBreak ? document.getElementById("debug").innerHTML += "<p>"+message : document.getElementById("debug").innerHTML += "<br>"+message
-  console.log(message)
 }
 // swiped these from Stack Overflow
 function randomInt(min,max) {
