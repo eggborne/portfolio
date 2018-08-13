@@ -68,7 +68,7 @@ function createProjectCards() { // called on load AND on resize
     // lighten themeColor for panel body
     var bodyColor = hexToRgbA(project.themeColor).replace("1)","0.5)")
     var galleryContents = '<img class="screenshot" src="'+screenshotPath+'" alt="'+displayName+' screenshot">'
-    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+project.themeColor+'"><h2 class="panel-title"><a href="'+project.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandInfoArea(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandInfoArea(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-sm-6"><a style="color:white" href="'+project.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-sm-6"><span style="float:right"><a style="color:white" href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
+    targetDiv.innerHTML += '<div id="'+projectID+'" class="project-card panel"><div class="panel-heading" style="background-color:'+project.themeColor+'"><h2 class="panel-title"><a href="'+project.url+'">'+displayName+'</a></h2></div><div class="panel-body" style="background-color:'+bodyColor+'"><div id="gallery+'+p+'">'+galleryContents+'</div><div style="margin: 20px 0 15px 0" class="page-header"><h4>Description:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandInfoArea(`project-description-`,`'+p+'`)" id="desc-button-'+p+'">Expand</button></div><p><ul class="collapsed" id="project-description-'+p+'"></ul></p><br><div style="margin: 20px 0 15px 0" class="page-header"><h4>Technologies used:</h4><button style="background:lightgreen" class="btn btn-default" onclick="expandInfoArea(`tech-list-`,`'+p+'`)" id="tech-button-'+p+'">Expand</button></div><ul class="collapsed" id="tech-list-'+p+'"></ul></div><div class="panel-footer"><div class="row"><div class="col-xs-6"><a style="color:white" href="'+project.url+'"><img class="left-icon"src="img/websiteicon.png">Website</a></div><div class="col-xs-6"><span style="float:right"><a style="color:white" href="'+repoURL+'">Github<img class="right-icon"src="img/githubicon.png"></a></span></div></div></div></div>'
     // fill descriptions
 		var descriptionList = document.getElementById("project-description-"+p)
 		project.descriptionBullets.forEach(function(bullet){
@@ -84,7 +84,7 @@ function createProjectCards() { // called on load AND on resize
 		((p+1) % cardsPerColumn) === 0 ? targetColumnIndex++ : false; // *count from 1 to avoid moving when p = 0
 	})
 	for (var projectKey in projectData) {
-		
+
 	}
 }
 function toggleSectionVisible(newSection) {
@@ -109,7 +109,7 @@ function expandInfoArea(sectionID,index) {
   } else {
     var button = document.getElementById("tech-button-"+index)
 	}
-	
+
   if (section.classList.contains("collapsed")) {
     section.classList.remove("collapsed")
     button.innerHTML = "Collapse"
